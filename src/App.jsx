@@ -12,6 +12,7 @@ import ProductDetails from './components/ProductDetails'
 import ProductInfoSection from './components/ProductInfoSection'
 // import ProductRow from './components/ProductsRow'
 import ProductSlider from './components/ProductSlider'
+import RatingSection from './components/RatingSection'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -20,6 +21,7 @@ function App() {
     <>
     <Navbar/>
     <ProductInfoSection/>
+    <RatingSection/>
       {/* <div>
 
 
