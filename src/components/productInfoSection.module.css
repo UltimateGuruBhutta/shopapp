@@ -1,0 +1,25 @@
+.navProInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1px;
+}
+
+.navLink {
+  text-decoration: none;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navLinkDiv {
+  /* background-color: blueviolet; */
+  width: 40%;
+  padding: 2%;
+  margin: 2px;
+  display: grid;
+  place-items: center;
+  border-bottom: 5px solid yellow;
+}
+.navLinkDiv:hover {
+  border-bottom: 5px solid greenyellow;
+}

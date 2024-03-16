@@ -1,8 +1,25 @@
-import css from "./productInfoSection.module.css"
+import css from "./productInfoSection.module.css";
 const ProductInfoSection = () => {
   return (
-    <div>ProductInfoSection</div>
-  )
-}
+    <div>
+      
+      <div className={css.navProInfo}>
+       
+        <div className={css.navLinkDiv}> 
+          Product Details
+       </div>
+       
+        <div className={css.navLinkDiv}>
+          FAQs
+        </div>
+       
+        <div className={css.navLinkDiv}> 
+          Rating & Reviews
+        </div>
+        
+      </div>
+    </div>
+  );
+};
 
-export default ProductInfoSection
+export default ProductInfoSection;

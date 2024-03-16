@@ -9,6 +9,7 @@ import Footer from './components/Footer'
 //
 import Navbar from './components/NavBar'
 import ProductDetails from './components/ProductDetails'
+import ProductInfoSection from './components/ProductInfoSection'
 // import ProductRow from './components/ProductsRow'
 import ProductSlider from './components/ProductSlider'
 
@@ -18,7 +19,7 @@ function App() {
   return (
     <>
     <Navbar/>
-    <ProductDetails/>
+    <ProductInfoSection/>
       {/* <div>
 
 
