@@ -1,0 +1,39 @@
+/* Base styles for the navbar to ensure background and text colors are aligned with a light theme */
+.navbar {
+  background-color: #f9f9f9; /* Light background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  display: flex;
+  justify-content: space-between; /* Space between logo and nav items */
+  padding: 0.5rem 1rem; /* Padding around the navbar */
+  align-items: center; /* Align items vertically */
+}
+
+/* Logo styles to make it stand out */
+.navbar .logo h1 {
+  margin: 0;
+  color: #333; /* Darker text for contrast */
+  font-size: 1.5rem; /* Larger font size */
+}
+
+/* Styling for the navigation items */
+.navbar ul {
+  list-style: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
+  display: flex; /* Display list items in a row */
+  margin: 0; /* Remove default margin */
+}
+
+.navbar ul li {
+  margin-left: 20px; /* Space between nav items */
+}
+
+.navbar ul li a {
+  text-decoration: none; /* Remove underline from links */
+  color: #333; /* Text color for links */
+  font-weight: 500; /* Slightly bolder font */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.navbar ul li a:hover {
+  color: #007bff; /* Highlight color on hover */
+}
