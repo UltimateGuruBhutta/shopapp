@@ -1,51 +1,34 @@
-// import { useState } from 'react'
+ 
 
-import './App.css'
-import Footer from './components/Footer'
+import "./App.css";
+import CategoryPage from "./components/jsx/CategoryPage";
+import FilterProduct from "./components/jsx/FilterProduct";
+import Footer from "./components/jsx/Footer";
 // import Gallery from './components/Gallery'
 // import Hero from './components/Hero'
 //###################################
 //###################################
 //
-import Navbar from './components/NavBar'
-import ProductDetails from './components/ProductDetails'
-import ProductInfoSection from './components/ProductInfoSection'
-// import ProductRow from './components/ProductsRow'
-import ProductSlider from './components/ProductSlider'
-import RatingSection from './components/RatingSection'
+import Navbar from "./components/jsx/NavBar";
+import ProductDetails from "./components/jsx/ProductDetails";
+import ProductInfoSection from "./components/jsx/ProductInfoSection";
+import ProductRow from "./components/jsx/ProductsRow";
+import ProductSlider from "./components/jsx/ProductSlider";
+import RatingSection from "./components/jsx/RatingSection";
+import CartProductList from "./components/jsx/CartProductList";
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <>
-    <Navbar/>
-    <ProductInfoSection/>
-    <RatingSection/>
-      {/* <div>
-
-
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
+      <Navbar />
+      {/* <FilterProduct/> */}
+      {/* <CategoryPage /> */}
+      {/* <ProductRow /> */}
+       <CartProductList/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,5 +1,5 @@
 // ProductCards.jsx
-import styles from './productSlider.module.css'; // Import the CSS Module
+import styles from '../styles/productSlider.module.css'; // Import the CSS Module
 
 const ProductCards = ({ titleName }) => {
   // Example product data

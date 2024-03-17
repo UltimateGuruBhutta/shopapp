@@ -1,4 +1,4 @@
-import css from "./productInfoSection.module.css";
+import css from "../styles/productInfoSection.module.css";
 const ProductInfoSection = () => {
   return (
     <div>

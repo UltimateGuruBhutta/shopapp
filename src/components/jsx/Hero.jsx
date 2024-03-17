@@ -1,4 +1,4 @@
-import styles from './hero.module.css';
+import styles from '../styles/hero.module.css';
 
 const CommerceHeroSection = () => {
   return (

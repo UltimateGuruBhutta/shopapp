@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1vw;
+  border: 2px solid;
+  justify-content: center;
+  align-items: center;
+
+  width: 60%;
+  height: auto;
+  font-family: "Allan", serif;
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  height: auto;
+  background-color: pink;
+}
+
+.pImg {
+  margin: 1vw 0vw;
+  margin-right: 1vw;
+  width: 22%;
+  aspect-ratio: 1/0.2;
+}
+.prdtNfo {
+  margin: 1vw 0vw;
+  width: 78%;
+  background-color: green;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.8rem;
+  color: rgb(0, 0, 0);
+
+  font-family: "Source Serif 4", serif;
+
+  font-weight: 700;
+  line-height: 1.5rem;
+  margin-block: 2vh;
+  text-align: left;
+}
+
+.sz,
+.clr {
+  display: block;
+  margin-block: 1.5vh;
+}
+
+.typ {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.qty {
+  margin-top: 4vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 90%;
+    margin-inline: auto;
+  }
+}

@@ -1,4 +1,4 @@
-import css from "./RatingSection.module.css";
+import css from "../styles/RatingSection.module.css";
 const RatingSection = () => {
   const data = [
     {

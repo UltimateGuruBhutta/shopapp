@@ -2,19 +2,19 @@
 .productCards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: start;
   gap: 20px;
   padding: 20px;
 }
 
 .card {
   width: 200px;
-  background-color: #fff;
+  background-color: #489841;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
 }
-
+/* 
 .rowTitle {
   display: flex;
   justify-content: center;
@@ -23,7 +23,9 @@
   padding: 20px;
   font-weight: bolder;
   font-size: 30px;
-}
+  background-color: #ba4141;
+
+} */
 
 .cardImage {
   width: 100%;

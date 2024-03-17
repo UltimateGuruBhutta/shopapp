@@ -1,4 +1,4 @@
-import styles from './Gallery.module.css';
+import styles from '../styles/Gallery.module.css';
 
 const images = [
   { src: 'https://via.placeholder.com/150', alt: 'Casual dress' },
