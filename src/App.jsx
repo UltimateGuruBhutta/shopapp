@@ -16,6 +16,7 @@ import ProductRow from "./components/jsx/ProductsRow";
 import ProductSlider from "./components/jsx/ProductSlider";
 import RatingSection from "./components/jsx/RatingSection";
 import CartProductList from "./components/jsx/CartProductList";
+import CartSummary from "./components/jsx/CartSummary";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -27,6 +28,8 @@ function App() {
       {/* <CategoryPage /> */}
       {/* <ProductRow /> */}
        <CartProductList/>
+       <CartSummary/>
+       
     </>
   );
 }

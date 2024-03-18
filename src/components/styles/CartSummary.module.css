@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 458px;
+  width: 38%;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 16px;
+}
+
+.header {
+  color: rgb(0, 0, 0);
+  font-family: Satoshi;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: left;
+}
+.price {
+  color: rgb(0, 0, 0);
+  font-family: Satoshi;
+  font-size: 1rem;
+  font-weight: 700;
+
+  text-align: right;
+}
+
+.two {
+  display: flex;
+  justify-content: space-between;
+}
+.subtotal {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Satoshi;
+  font-size: 1.3rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+.red {
+  color: red;
+}
+.total {
+  font-size: 1.6rem;
+}
+.promo {
+  border-radius: 62px;
+  margin: 0px 12px;
+  background: rgb(240, 240, 240);
+  height: 3vh;
+  width: 60%;
+}
+.appbtn {
+  height: 4vh;
+  width: 30%;
+  border-radius: 62px;
+  color: white;
+  background: rgb(0, 0, 0);
+}
+
+.next {
+  width: 80%;
+  border-radius: 62px;
+  height: 5vh;
+  color: white;
+  background: rgb(0, 0, 0);
+  margin-inline: auto;
+}
+
+.bottomBoder {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
