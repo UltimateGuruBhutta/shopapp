@@ -21,7 +21,7 @@ const CartSummary = () => {
           <span className={`${css.price} ${css.total}  `}> $123</span>
         </div>
         <div className={css.two}>
-          <input type="promo" value="promoCode" className={css.promo} />
+          <input type="text" placeholder="promoCode" className={css.promo} />
           <button className={css.appbtn}>apply</button>
         </div>
 
