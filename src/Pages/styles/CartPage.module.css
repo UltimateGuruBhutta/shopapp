@@ -1,0 +1,26 @@
+.header {
+  color: rgb(0, 0, 0);
+  font-family: Integral CF;
+  font-size: 40px;
+  font-weight: 700;
+
+  text-align: left;
+}
+
+.cartDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .header {
+    text-align: center;
+  }
+
+  .cartDiv {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  }
+}

@@ -1,4 +1,5 @@
 // ProductCards.jsx
+import { Link } from 'react-router-dom';
 import styles from '../styles/productRow.module.css'; // Import the CSS Module
 
 const ProductCards = (/*{ titleName }*/) => {
@@ -24,6 +25,7 @@ const ProductCards = (/*{ titleName }*/) => {
       </div> */}
       <div className={styles.productCards}>
         {products.map((product) => (
+          <Link to={`/ProductDetails/${product.id}`} key={product.id}> 
           <div className={styles.card} key={product.id}>
             <img src={product.imageUrl} alt={product.name} className={styles.cardImage} />
             <div className={styles.cardInfo}>
@@ -32,6 +34,7 @@ const ProductCards = (/*{ titleName }*/) => {
               <p className={styles.price}>{product.price}</p>
             </div>
           </div>
+          </Link>
         ))}
       </div>
       <div className={styles.viewBtn}>

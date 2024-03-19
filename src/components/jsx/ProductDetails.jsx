@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "../styles/productDetail.module.css";
 
 const ProductDetails = () => {
@@ -52,7 +53,9 @@ const ProductDetails = () => {
               <button className={styles.negBtn}>-</button>1
               <button className={styles.posBtn}>+</button>
             </div>
+            <Link to={`/CartPage`}>
             <button className={styles.addToCartBtn}>Add to Cart</button>
+            </Link>
           </div>
         </div>
       </div>
