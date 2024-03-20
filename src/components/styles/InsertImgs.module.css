@@ -1,0 +1,59 @@
+.abc {
+  padding: 6px;
+  background-color: aqua;
+  width: 440px;
+  height: auto;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.mImg {
+  width: 420px;
+  height: auto;
+  object-fit: fill;
+  aspect-ratio: 1/1;
+}
+
+.insHold {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  background-color: aquamarine;
+  padding: 6px;
+}
+
+.addImg {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  flex-wrap: wrap;
+  padding: 6px;
+  background-color: blueviolet;
+  width: 100%;
+}
+
+.uploader {
+  display: flex;
+  background-color: aliceblue;
+  padding: 20px;
+  border-radius: 6px;
+  border: 2px solid black;
+  cursor: pointer;
+  margin: 3px;
+}
+
+.subImg {
+  margin: 3px;
+  width: 100px;
+  height: 60px;
+  border: 2px solid black;
+  aspect-ratio: 1/1;
+  object-fit: fill;
+}
