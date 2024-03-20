@@ -39,6 +39,8 @@
 .w {
   width: 100%;
   border-radius: 5px;
+  border: none;
+  padding: 5px;
 }
 
 .mbtns {
