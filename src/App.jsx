@@ -21,6 +21,7 @@ import HomePage from "./Pages/jsx/HomePage";
 
 import ProductDetailsPage from "./Pages/jsx/ProductDetailsPage";
 import CartPage from "./Pages/jsx/CartPage";
+import AddProduct from "./Pages/jsx/AddProduct";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -36,6 +37,9 @@ function App() {
             element={<ProductDetailsPage />}
           />
           <Route path="/CartPage" element={<CartPage />} />
+          <Route path="/AddProduct" element={<AddProduct/>} />
+
+          
         </Routes>
       </BrowserRouter>
     </>

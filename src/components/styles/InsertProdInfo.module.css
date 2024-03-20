@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  padding: 1rem;
+  backdrop-filter: blur(25%);
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: 1vw solid orange;
+  width: 20%;
+  height: auto;
+}
+
+.header {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-block: 2vh;
+}
+
+.tags {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 1vh;
+  margin-bottom: 0.4vh;
+}
+
+.sizeBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+  padding-bottom: 1vh;
+  margin-bottom: 1vh;
+  width: 100%;
+}
+.w {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.mbtns {
+  background-color: aliceblue;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  width: 3vw;
+  height: 5vh;
+  margin: 3px 3px 3px;
+}
