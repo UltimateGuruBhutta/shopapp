@@ -6,9 +6,11 @@ router.get('/',(req,res)=>{
 res.send("home");
 })
 
-router.get('/add',(req,res)=>{
-    res.send('Home/add')
+router.get('/add/:id',(req,res)=>{
+    res.send('Home/add');
 })
+
+
 
 
 module.exports=router;
