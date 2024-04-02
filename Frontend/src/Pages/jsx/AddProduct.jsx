@@ -1,84 +1,155 @@
-import {useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from "react";
 import InsertImgs from "../../components/jsx/InsertImgs";
 import InsertProdInfo from "../../components/jsx/InsertProdInfo";
 import css from "../styles/AddProduct.module.css";
-import axios from 'axios';
+import axios from "axios";
+import { ToastContainer, toast  } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddProduct = () => {
-  const insertProdInfoRef = useRef();
-  const productImgRef = useRef();
-
-  const [formData, setFormData] = useState({});
-  const [imgList, setImgList] = useState([]);
-  
-const [send,setSend]=useState(false);
-const [valid,setValid]=useState(false);
-const handleValid=(ok)=>{
-  setValid(ok);
-}
-const getValid=()=>{
-  return valid;
-}
-  // This function is provided to InsertProdInfo to set formData in this component's state
-  const handleFormData = (data) => {
-    setFormData(data);
+  const initState = {
+    name: "",
+    description: "",
+    color: [],
+    size: [],
+    price: 0,
+    stock: 0,
+    discount: 0,
+    images: [],
   };
+  const [formData, setFormData] = useState(initState);
+  const [sendSwitch, setSendSwitch] = useState(false);
 
-  // This function is provided to InsertImgs to set imgList in this component's state
-  const handleImgList = (list) => {
-    setImgList(list);
-  };
+  // const sendData = async () => {
+  //   try {
+  //     const res = await axios.post(
+  //       "http://localhost:3000/product/add",
+  //       formData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       }
+  //     );
 
-   
+  //     console.log("formData sent and res is ", res);
+  //     setSendSwitch(false);
+  //     toast.success("Product is Created", {
+  //       position: "top-center",
+  //       autoClose: 5000,
+  //       hideProgressBar: true,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //       transition: Slide,
+  //     });
+  //     setFormData(initState);
+  //     console.log("FormData in Sent:", formData);
+  //   } catch (error) {
+  //     toast.error("send error check internet connection", {
+  //       position: "top-center",
+  //       autoClose: 5000,
+  //       hideProgressBar: true,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //       transition: Slide,
+  //     });
+  //     console.log("FormData in sent error:", formData);
+  //   }
+  // };
+  const sendData = async () => {
+    // Create a FormData object
+    const formDataToSend = new FormData();
 
-  const handleParentSubmit = async () => {
-    // Trigger the form submission in InsertProdInfo
-    // This should populate formData via handleFormData
-      insertProdInfoRef.current.submitForm();
-       
-    productImgRef.current.submitForm();
-     
-    setSend(true);
-      
+    // Append non-file fields to formData
+    Object.keys(formData).forEach((key) => {
+      if (key !== "images") {
+        formDataToSend.append(key, formData[key]);
+      }
+    });
 
-     // Since submitForm() and handleFormData update state asynchronously,
-    // we need to ensure formData is updated before sending. This could be 
-    // achieved by moving the send logic to a useEffect hook that watches formData.
-  };
+    // Append image files to formData
+    // Assuming each item in formData.images is a File object
+    formData.images.forEach((imageFile, index) => {
+      formDataToSend.append(`images`, imageFile); // 'images' is the field name expected by the server
+    });
 
-  const sendDataToServer = async (payload) => {
     try {
-      const response = await axios.post("http://localhost:3000/product/add", payload);
-      console.log("well payload recieved ready to send",payload,response.data);
-      
-      // Handle success
+      const response = await axios.post(
+        "http://localhost:3000/product/add",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // This is optional, Axios sets it automatically
+          },
+        }
+      );
+      console.log("Response:", response.data);
+      toast.success("Product is Created");
+      setFormData(initState);
+      setSendSwitch(false); // Reset form data state after successful upload
     } catch (error) {
-      console.error('it was doomed to fail, payload recieved', payload,error);
-      // Handle error
+      console.error("Error uploading:", error);
+      toast.error("Upload error. Please check your internet connection.");
+      setSendSwitch(false); 
     }
   };
-  // Send data to server when formData is updated and not empty
-  // Ensure to check that formData is not the initial empty object
-  // Adjust this logic based on how your API expects to receive images
+
   useEffect(() => {
-    if (Object.keys(formData).length > 0) { // Check if formData is not empty
-      const payload = {
-        ...formData,
-        images: imgList,
-      };
-      sendDataToServer(payload);
+    if (sendSwitch) {
+      sendData();
     }
+  }, [sendSwitch]);
+  const handleSend = () => {
+    if (checkValid()) {
+      setSendSwitch(true);
+    } else setSendSwitch(false);
+  };
 
+  const checkValid = () => {
+    for (let key of Object.keys(formData)) {
+      if(key=='discount')continue;
+      if (formData[key] === initState[key]) {
+        // send toast message to fill required field
+        toast.error(`${key} is missing, Please fill ${key}`);
 
+        console.log("Form is missing some fields");
+        console.log("FormData in False:", formData);
 
+        return false;
+      }
+      if (Array.isArray(formData[key]) && formData[key].length == 0) {
+        toast.error(`${key} is missing, Please fill ${key}`);
+        console.log("array line in productinfo");
+        return false;
+      }
+    }
+    console.log("FormData when true:", formData);
+    return true;
+  };
 
-  }, [send]);
+  const handleFormData = (key, value) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [key]: Array.isArray(prevFormData[key])
+        ? key == "images"
+          ? [...prevFormData[key], ...value]
+          : [...prevFormData[key], value]
+        : value,
+    }));
+  };
 
   return (
     <div className={css.container}>
-      <button onClick={handleParentSubmit}>Send to Server</button>
-      <InsertProdInfo ref={insertProdInfoRef} handleFormData={handleFormData} validfun={handleValid} />
-      <InsertImgs ref={productImgRef} handleImgs={handleImgList} validvar={getValid}/>{console.log("in parent valid",valid)}
+      <button onClick={handleSend}>Send to Server</button>
+      <InsertProdInfo assignData={handleFormData} dataList={formData} />
+      <InsertImgs assignData={handleFormData} dataList={formData} />
+      <ToastContainer />
     </div>
   );
 };

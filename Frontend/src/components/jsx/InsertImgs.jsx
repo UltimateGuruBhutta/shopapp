@@ -6,7 +6,7 @@
 //  Clicking the custom upload trigger triggers the hidden file input.
 //  It conditionally renders the most recently selected image's
 //   preview prominently and smaller previews of all selected images.
-import { forwardRef, useImperativeHandle, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import css from "../styles/InsertImgs.module.css";
 import { GoUpload } from "react-icons/go";
 import { CiImageOn } from "react-icons/ci";
@@ -14,20 +14,22 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { useEffect } from "react";
 
 // eslint-disable-next-line react/prop-types, react/display-name
-const InsertImgs = forwardRef(({ handleImgs ,validVar}, ref) => {
+const InsertImgs = ({ assignData, dataList }) => {
   const inputRef = useRef(null);
-  const [upImg, setUpimg] = useState([]);
+
   const [preview, setPreview] = useState([]);
-  const formRef = useRef(null); // For the form element
-  
-  useImperativeHandle(ref, () => ({
-    submitForm: () => {
-      formRef.current &&
-        formRef.current.dispatchEvent(
-          new Event("submit", { cancelable: true, bubbles: true })
-        );
-    },
-  }));
+
+  useEffect(() => {
+    if (dataList.images.length > 0) {
+      const temp = dataList.images.map((curr) => {
+        return URL.createObjectURL(curr);
+      });
+
+      setPreview((prevPreviews) => [...(prevPreviews || []), ...temp]);
+    } else {
+      setPreview([]);
+    }
+  }, [dataList.images]);
 
   useEffect(() => {
     return () => {
@@ -39,18 +41,6 @@ const InsertImgs = forwardRef(({ handleImgs ,validVar}, ref) => {
     };
   }, [preview]);
 
-
-  useEffect(()=>{
-    if(validVar()){
-      setUpimg([]);
-    setPreview([]);
-    console.log("valid var in useEffect of imgComponent",validVar)
-    }
-    console.log("valid var in useEffect of imgComponent",validVar)
-
-    
-  },[])
-
   const giveClick = () => {
     inputRef.current.click();
   };
@@ -59,35 +49,8 @@ const InsertImgs = forwardRef(({ handleImgs ,validVar}, ref) => {
   const getImgs = (e) => {
     const file = Array.from(e.target.files).slice(0, 7);
 
-    setUpimg((preupImg) => {
-      return [...preupImg, ...file];
-    });
-
-    const temp = file.map((curr) => {
-      return URL.createObjectURL(curr);
-    });
-    setPreview((prevPreviews) => [...(prevPreviews || []), ...temp]);
+    assignData("images", file);
   };
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   handleImgs(upImg);
-  //   setUpimg([]);
-  //   setPreview([]);
-  // };
-  const handleSubmit = (e) => {
-  e.preventDefault();
-  
-  // Assuming 'e.target' refers to your form element. Adjust if your structure is different.
-  if (e.target.checkValidity()) {
-    handleImgs(upImg);
-    // setUpimg([]);
-    // setPreview([]);
-  } else {
-    // This line is optional, as invalid fields automatically show validation messages.
-    // Included here for completeness and explicit behavior control.
-    e.target.reportValidity();
-  }
-};
 
   return (
     <div className={css.abc}>
@@ -96,7 +59,7 @@ const InsertImgs = forwardRef(({ handleImgs ,validVar}, ref) => {
           {" "}
           <img
             className={css.mImg}
-            src={preview && preview[preview.length - 1]}
+            src={preview[preview.length - 1]}
             alt="Placeholder image"
           />
           {console.log("preview:", preview)}
@@ -107,17 +70,15 @@ const InsertImgs = forwardRef(({ handleImgs ,validVar}, ref) => {
 
       <div className={css.insHold}>
         <div className={css.addImg}>
-          <form ref={formRef} onSubmit={handleSubmit}>
-            <input
-              onChange={getImgs}
-              ref={inputRef}
-              type="file"
-              accept="image/*"
-              style={{ display: "none" }}
-              multiple
-              required
-            />
-          </form>
+          <input
+            onChange={getImgs}
+            ref={inputRef}
+            type="file"
+            accept="image/*"
+            style={{ display: "none" }}
+            multiple
+          />
+
           <div className={css.uploader} onClick={giveClick}>
             <GoUpload />
             <CiImageOn />
@@ -142,6 +103,6 @@ const InsertImgs = forwardRef(({ handleImgs ,validVar}, ref) => {
       </div>
     </div>
   );
-});
+};
 
 export default InsertImgs;

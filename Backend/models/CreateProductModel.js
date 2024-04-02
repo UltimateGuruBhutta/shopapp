@@ -8,7 +8,8 @@ const productSchema = mongoose.Schema({
   price: {type:Number,required:true,},
   stock: {type:Number,required:true,},
   discount: Number,
-  images:[Buffer],
+  images: [{type: Buffer}],
+
 },{timestamps: true});
 
 const NewProduct = mongoose.model("AddProduct", productSchema);

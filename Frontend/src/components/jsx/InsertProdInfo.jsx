@@ -1,113 +1,88 @@
-import { forwardRef, useImperativeHandle, useState, useRef } from "react";
+import {   useState, useEffect } from "react";
 import css from "../styles/InsertProdInfo.module.css";
  
 
 // eslint-disable-next-line react/display-name
-const InsertProdInfo = forwardRef(({handleFormData ,validfun}, ref,) => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [color, setColor] = useState([]);
-  const [size, setSize] = useState([]);
+const InsertProdInfo =  ( {assignData,dataList} ) => {
+  
+  
+  const [colorA, setColorA] = useState("");
+  const [sizeA, setSizeA] = useState("");
 
-  const [price, setPrice] = useState(0);
-  const [discount, setDiscount] = useState(0);
-  const [stock, setStock] = useState(0);
-  const [inF, setInF] = useState(true);
+  const [sizeF, setSizeF] = useState(true);
   const [colorF, setColorF] = useState(true);
 
-  const [getSize, setGetSize] = useState();
-  const [getColor, setGetColor] = useState();
+  const {color}=dataList;
+  const {size}=dataList; 
 
-  const formRef = useRef(null); // For the form element
 
-  useImperativeHandle(ref, () => ({
-    submitForm: () => {
-      formRef.current &&
-        formRef.current.dispatchEvent(
-          new Event("submit", { cancelable: true, bubbles: true })
-        );
-    },
-  }));
 
-  const resetForm = () => {
-    // Reset send to prevent repeated sending
-    setName("");
-    setDescription("");
-    setColor([]);
-    setSize([]);
-    setPrice(0);
-    setStock(0);
-    setDiscount(0);
-  };
+  useEffect(()=>{
+  
+  },[]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (e.target.checkValidity()) {
-      const data = { name, description, color, size, price, discount, stock };
-      handleFormData(data);
-      resetForm();
-      validfun(true);
-      
+  
 
-    } else {
-      e.target.reportValidity();
-    }
-  };
-  const handleSizeInput = () => {
-    setInF(true);
-    if (getSize) {
-      setSize((prev) => {
-        return [...prev, getSize];
-      });
-      setGetSize("");
+  // useImperativeHandle(ref, () => ({
+  //   submitForm: () => {
+  //     formRef.current &&
+  //       formRef.current.dispatchEvent(
+  //         new Event("submit", { cancelable: true, bubbles: true })
+  //       );
+  //   },
+  // }));
+ 
+   
+  const handleSizeAInput = () => {
+    setSizeF(true);
+    if (sizeA) {
+     assignData("size",sizeA);
+      setSizeA("");
     }
   };
 
-  const handleColorInput = () => {
+  const handleColorAInput = () => {
     setColorF(true);
-    if (getColor) {
-      setColor((prev) => {
-        return [...prev, getColor];
-      });
-      setGetColor("");
+    if (colorA) {
+      assignData("color",colorA);
+      setColorA("");
     }
   };
 
   return (
     <>
       <div className={css.container}>
-        <form ref={formRef} onSubmit={handleSubmit}>
+        
           
           <span className={css.header}>General Informaiton</span>
           <div>
-            <label htmlFor="name" className={css.tags}>
+            <label htmlFor="name"  className={css.tags}>
               Name of Product
             </label>
             <input
               type="text"
               id="name"
               className={`${css.w}`}
-              onChange={(e) => setName(e.target.value)}
-              required
-              value={name}
+              onChange={(e)=>assignData(e.target.id,e.target.value)}
+              
+              value={dataList.name}
             />
 
             <label htmlFor="desc" className={css.tags}>
               Description
             </label>
             <textarea
-              id="desc"
-              cols="30"
-              rows="10"
+              id="description"
+              
               className={`${css.w}`}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-              value={description}
+              onChange={(e)=>assignData(e.target.id,e.target.value)}
+              
+              value={dataList.description}
             ></textarea>
             <div>
               <span className={`${css.tags}`}>Color</span>
               <div className={`${css.sizeBox}`}>
-                {color &&
+                {dataList.color.length>0  &&
                   color.map((curr, index) => {
                     return (
                       <div className={`${css.mbtns}`} key={index}>
@@ -122,9 +97,12 @@ const InsertProdInfo = forwardRef(({handleFormData ,validfun}, ref,) => {
                   <>
                     <input
                       type="text"
-                      onChange={(e) => setGetColor(e.target.value)}
+                      id="color"
+                
+                      
+                      onChange={(e) => setColorA(e.target.value)}
                     />{" "}
-                    <button onClick={handleColorInput}> Enter </button>
+                    <button onClick={handleColorAInput}> Enter </button>
                   </>
                 )}
               </div>
@@ -133,7 +111,7 @@ const InsertProdInfo = forwardRef(({handleFormData ,validfun}, ref,) => {
             <div>
               <span className={`${css.tags}`}>Size</span>
               <div className={`${css.sizeBox}`}>
-                {size &&
+                {size.length>0   &&
                   size.map((curr, index) => {
                     return (
                       <div className={`${css.mbtns}`} key={index}>
@@ -142,15 +120,16 @@ const InsertProdInfo = forwardRef(({handleFormData ,validfun}, ref,) => {
                     );
                   })}
 
-                {inF ? (
-                  <button onClick={() => setInF(false)}>Add Size </button>
+                {sizeF ? (
+                  <button onClick={() => setSizeF(false)}>Add Size </button>
                 ) : (
                   <>
                     <input
+                      id="size"
                       type="text"
-                      onChange={(e) => setGetSize(e.target.value)}
+                      onChange={(e) => setSizeA(e.target.value)}
                     />{" "}
-                    <button onClick={handleSizeInput}> Enter </button>
+                    <button onClick={handleSizeAInput}> Enter </button>
                   </>
                 )}
               </div>
@@ -163,14 +142,16 @@ const InsertProdInfo = forwardRef(({handleFormData ,validfun}, ref,) => {
                 Base Pricing
               </label>
               <input
-                type="text"
-                id="basePrice"
-                name="basePrice"
+                type="number"
+                id="price"
+                
                 className={`${css.w}`}
                 placeholder="0"
-                onChange={(e) => setPrice(e.target.value)}
-                required
-                value={price}
+                onChange={(e)=>assignData(e.target.id,Number(e.target.value))}
+
+
+                
+                value={dataList.price}
               />
 
               <label htmlFor="stock" className={css.tags}>
@@ -178,13 +159,14 @@ const InsertProdInfo = forwardRef(({handleFormData ,validfun}, ref,) => {
               </label>
               <input
                 className={`${css.w}`}
-                type="text"
+                type="number"
                 id="stock"
-                name="basePrice"
+                
                 placeholder="0"
-                onChange={(e) => setStock(e.target.value)}
-                required
-                value={stock}
+                onChange={(e)=>assignData(e.target.id,Number(e.target.value))}
+
+                
+                value={dataList.stock}
               />
 
               <label className={css.tags} htmlFor="discount">
@@ -192,19 +174,20 @@ const InsertProdInfo = forwardRef(({handleFormData ,validfun}, ref,) => {
               </label>
               <input
                 className={`${css.w}`}
-                type="text"
+                type="number"
                 id="discount"
-                name="basePrice"
+                 
                 placeholder="0"
-                onChange={(e) => setDiscount(e.target.value)}
-                value={discount}
+                onChange={(e)=>assignData(e.target.id,Number(e.target.value))}
+
+                value={dataList.discount}
               />
             </div>
           </div>
-        </form>
+       
       </div>
     </>
   );
-});
+} 
 
 export default InsertProdInfo;
