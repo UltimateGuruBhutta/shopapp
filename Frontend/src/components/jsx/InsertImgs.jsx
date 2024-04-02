@@ -20,15 +20,10 @@ const InsertImgs = ({ assignData, dataList }) => {
   const [preview, setPreview] = useState([]);
 
   useEffect(() => {
-    if (dataList.images.length > 0) {
-      const temp = dataList.images.map((curr) => {
-        return URL.createObjectURL(curr);
-      });
-
-      setPreview((prevPreviews) => [...(prevPreviews || []), ...temp]);
-    } else {
+    if (dataList.images.length == 0) { 
       setPreview([]);
     }
+
   }, [dataList.images]);
 
   useEffect(() => {
@@ -48,8 +43,16 @@ const InsertImgs = ({ assignData, dataList }) => {
   /// remove slice for unlimitied addition of pictures;
   const getImgs = (e) => {
     const file = Array.from(e.target.files).slice(0, 7);
-
+     
     assignData("images", file);
+    const temp=[];
+    for (let i = 0; i < file.length; i++) { // Use files array directly
+      temp.push(URL.createObjectURL(file[i])); // Generate URLs from the new files
+    }
+   
+
+    setPreview((prevPreviews) => [...(prevPreviews || []), ...temp]);
+
   };
 
   return (
