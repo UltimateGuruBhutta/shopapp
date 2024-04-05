@@ -9,8 +9,6 @@ const HomePage = () => {
     try {
       const res = await axios.get("http://localhost:3000/product/list");
       setDat(res.data);
-
-       
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -25,7 +23,7 @@ const HomePage = () => {
       <Hero />
       <div>Product listing</div>
       <ProductRow productList={dat} />
-       
+      {console.log("home page : ", dat)}
     </>
   );
 };

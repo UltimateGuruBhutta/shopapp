@@ -5,6 +5,9 @@ import Footer from "../../components/jsx/Footer";
 import css from "../styles/CartPage.module.css";
 
 const CartPage = () => {
+
+    
+
   return (
     <>
       <div className={css.container}>

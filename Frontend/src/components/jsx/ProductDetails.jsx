@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/productDetail.module.css";
+  
+import { useContext } from "react";
+import { qtyContext } from "../../components/context";
+const ProductDetails = ({ props }) => {
 
-const ProductDetails = () => {
+
+  const {qty,setSclr,setSz,sz,sclr,assignQty}=useContext(qtyContext);
+  
+  
+
   return (
+    
     <div className={styles.center}>
       <div className={styles.container}>
         <div className={styles.productleftSideImg}>
@@ -16,50 +25,60 @@ const ProductDetails = () => {
         </div>
 
         <div className={styles.productInfo}>
-          <span className={styles.productTitle}>Product Title</span>
+          <span className={styles.productTitle}>{props.name}</span>
           <span className={styles.productRating}>★★stars★★☆</span>
-          <span className={styles.productPrice}>$99.99</span>
-          <span className={styles.productDescription}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, porro!
-            Aut cum corporis, voluptatibus doloribus magni vitae unde officia
-            voluptatem blanditiis repellendus, volafsfasfafuptates debitis
-            natus.This is a great Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Beatae magnam, omnis eius placeat in ipsam ducimus
-            quae quibusdam reprehenderit accusamus eligendi impedit tenetur
-            consectetur mollitia sequi dolores saepe ab officiis enim error.
-            Neque, accusamus cum autem officiis voluptatibus possimus
-            reprehenderit adipisci, est nam repellendus minus eum nobis
-            corporis. Incidunt, quod. product that you should totally buy!
-          </span>
+          <span className={styles.productPrice}>${props.price}</span>
+          <span className={styles.productDescription}>{props.description}</span>
 
           <div className={styles.selectColor}>
             <span className={styles.label}> Select Color:</span>
-
-            <div className={styles.clrbtn}></div>
-            <div className={styles.clrbtn}> </div>
+            {props.color &&
+              props.color.map((curr) => (
+                <div className={styles.sizebtn} key={curr.id} onClick={()=>setSclr(curr)}>
+                  {curr}
+                  {console.log(sclr)}
+                </div>
+              ))}
           </div>
 
           <div className={styles.chooseSize}>
-            <span className={`${styles.label} ${styles.sizeLabel}`}> Choose Size:</span>
-
-            <div className={styles.sizebtn}>Small</div>
-            <div className={styles.sizebtn}>Medium</div>
-            <div className={styles.sizebtn}>Large</div>
-            <div className={styles.sizebtn}>X-Large</div>
+            <span className={`${styles.label} ${styles.sizeLabel}`}>
+              {" "}
+              Choose Size:
+            </span>
+            {props.size &&
+              props.size.map((curr) => (
+                <div className={styles.sizebtn} key={curr.id} onClick={()=>setSz(curr)}>
+                  {curr}
+                  {console.log(sz)}
+                </div>
+              ))}
           </div>
 
           <div className={styles.cartDiv}>
             <div className={styles.qtyBtn}>
-              <button className={styles.negBtn}>-</button>1
-              <button className={styles.posBtn}>+</button>
+              <button
+                className={styles.negBtn}
+                onClick={() =>assignQty('DECREMENT') }
+              >
+                -
+              </button>
+              {qty}
+              <button
+                className={styles.posBtn}
+                onClick={() =>assignQty('INCREMENT') }
+              >
+                +
+              </button>
             </div>
             <Link to={`/CartPage`}>
-            <button className={styles.addToCartBtn}>Add to Cart</button>
+              <button className={styles.addToCartBtn}>Add to Cart</button>
             </Link>
           </div>
         </div>
       </div>
     </div>
+    
   );
 };
 

@@ -5,6 +5,8 @@ import express from 'express';
 import db from 'mongoose';
 import cors from 'cors'
 import productRoute from './routes/ProductRoute.js';
+import userRoute from './routes/UserRoute.js';
+
 
 
 
@@ -27,6 +29,13 @@ db.connect(process.env.DB_URL).then(()=>{console.log('Mongodb is connected Atlas
 
 
 app.use('/product', productRoute);
+
+
+
+app.use('/user', userRoute);
+
+
+
 
 app.listen(port, () => {
     console.log("Server is running and listening to requests...");

@@ -10,7 +10,7 @@ const productSchema = mongoose.Schema({
   discount: Number,
   images: [{type: Buffer}],
 
-},{timestamps: true});
+});
 
 const NewProduct = mongoose.model("Product", productSchema);
 

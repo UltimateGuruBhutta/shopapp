@@ -5,19 +5,20 @@ import ProductInfoSection from "../../components/jsx/ProductInfoSection";
 import RatingSection from "../../components/jsx/RatingSection";
 import css from "../styles/ProductDetailPage.module.css";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
 
 
 
 const ProductDetailsPage = () => {
-  
+  const [data,setData]=useState([]);
+
   const param = useParams();
   const getData=async ()=>{
     try{
-        const res = await axios.get(`http://localhost:3000/product/${param.prod_Id}`);
-        
+        const res = await axios.get(`http://localhost:3000/product/${param.id}`);
+        setData(res.data[0])
         console.log("in Product Detail Page response data", res.data);
     }
     catch(error)
@@ -40,7 +41,7 @@ const ProductDetailsPage = () => {
 
   return (
     <>
-      <ProductDetails />
+      <ProductDetails props={data} />
 
       <ProductInfoSection />
       <RatingSection />

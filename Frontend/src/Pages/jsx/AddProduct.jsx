@@ -3,7 +3,7 @@ import InsertImgs from "../../components/jsx/InsertImgs";
 import InsertProdInfo from "../../components/jsx/InsertProdInfo";
 import css from "../styles/AddProduct.module.css";
 import axios from "axios";
-import { ToastContainer, toast  } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddProduct = () => {
@@ -66,19 +66,18 @@ const AddProduct = () => {
     // Create a FormData object
     const formDataToSend = new FormData();
 
-    // Append non-file fields to formData
-    Object.keys(formData).forEach((key) => {
-      if (key !== "images") {
-        formDataToSend.append(key, formData[key]);
-      }
-    });
+   Object.keys(formData).forEach((key) => {
+    if (key !== "images") {
+      // If the value is an array, stringify it before appending
+      const value = Array.isArray(formData[key]) ? JSON.stringify(formData[key]) : formData[key];
+      formDataToSend.append(key, value);
+    }
+  });
 
-    // Append image files to formData
-    // Assuming each item in formData.images is a File object
-    formData.images.forEach((imageFile, index) => {
-      formDataToSend.append(`images`, imageFile); // 'images' is the field name expected by the server
-    });
-
+  // Append image files to formData
+  formData.images.forEach((imageFile, index) => {
+    formDataToSend.append('images', imageFile); // 'images' is the field name expected by the server
+  });
     try {
       const response = await axios.post(
         "http://localhost:3000/product/add",
@@ -96,7 +95,7 @@ const AddProduct = () => {
     } catch (error) {
       console.error("Error uploading:", error);
       toast.error("Upload error. Please check your internet connection.");
-      setSendSwitch(false); 
+      setSendSwitch(false);
     }
   };
 
@@ -107,13 +106,17 @@ const AddProduct = () => {
   }, [sendSwitch]);
   const handleSend = () => {
     if (checkValid()) {
+      console.log("Add Product Form Data ", formData);
       setSendSwitch(true);
-    } else setSendSwitch(false);
+    } else {
+      setSendSwitch(false);
+      console.log("Add Product Form Data ", formData);
+    }
   };
 
   const checkValid = () => {
     for (let key of Object.keys(formData)) {
-      if(key=='discount')continue;
+      if (key == "discount") continue;
       if (formData[key] === initState[key]) {
         // send toast message to fill required field
         toast.error(`${key} is missing, Please fill ${key}`);

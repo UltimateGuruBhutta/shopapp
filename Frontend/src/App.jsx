@@ -22,6 +22,9 @@ import HomePage from "./Pages/jsx/HomePage";
 import ProductDetailsPage from "./Pages/jsx/ProductDetailsPage";
 import CartPage from "./Pages/jsx/CartPage";
 import AddProduct from "./Pages/jsx/AddProduct";
+import { QtyProvider } from "../src/components/context";
+import Login from "./components/jsx/Login";
+import Register from "./components/jsx/Register";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -29,19 +32,23 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/ProductDetails/:prod_Id/"
-            element={<ProductDetailsPage />}
-          />
-          <Route path="/CartPage" element={<CartPage />} />
-          <Route path="/AddProduct" element={<AddProduct/>} />
-
-          
-        </Routes>
+        <QtyProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/ProductDetails/:id/"
+              element={<ProductDetailsPage />}
+            />
+            <Route path="/CartPage" element={<CartPage />} />
+            <Route path="/AddProduct" element={<AddProduct />} />
+          </Routes>
+        </QtyProvider>
       </BrowserRouter>
+      {/* <Login/> */}
+
+      {/* <Register />
+      <AddProduct /> */}
     </>
   );
 }

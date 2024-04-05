@@ -1,28 +1,40 @@
+import sharp from "sharp";
 import NewProduct from "../models/CreateProductModel.js";
-
 export const createProduct = async (req, res) => {
   try {
-    // Assuming other product information is sent along with images in the request body
+    let imgPromises = req.files.map(file =>
+      sharp(file.buffer)
+        .resize(270, 370, {
+          fit: 'fill'
+        })
+        .toBuffer()
+    );
+
+    // Wait for all promises to resolve
+    let imgs = await Promise.all(imgPromises);
+
     const productData = {
       ...req.body,
-      images: req.files.map((file) => file.buffer),
+      color: JSON.parse(req.body.color),
+      size: JSON.parse(req.body.size),
+      images: imgs, // Use the processed images
     };
-    console.log("images in server : ", req.body.images);
+
+    console.log("Server Received Request to create Product: ");
     const product = new NewProduct(productData);
     const savedProduct = await product.save();
 
     res.status(201).json({ savedProduct });
   } catch (error) {
     console.error("Controller error", error);
-    res
-      .status(500)
-      .json({ message: "Error creating product", error: error.message });
+    res.status(500).json({ message: "Error creating product", error: error.message });
   }
 };
 
+
 export const productList = async (req, res) => {
   
-  const list = await NewProduct.find({},{createdAt:0,updatedAt:0,__v:0,images:0}).exec();
+  const list = await NewProduct.find({},{ __v:0}).exec();
   res.json(list);
   console.log("in controller line passed")
   console.log("Server recived Request : Length : ", list.length);
