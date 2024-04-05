@@ -135,7 +135,7 @@ const InsertProdInfo =  ( {assignData,dataList} ) => {
               </div>
             </div>
 
-            <h3>Pricing & Stock</h3>
+            <h3>Pricing</h3>
 
             <div>
               <label htmlFor="basePrice" className={css.tags}>
@@ -154,7 +154,7 @@ const InsertProdInfo =  ( {assignData,dataList} ) => {
                 value={dataList.price}
               />
 
-              <label htmlFor="stock" className={css.tags}>
+              {/* <label htmlFor="stock" className={css.tags}>
                 Stock
               </label>
               <input
@@ -168,7 +168,7 @@ const InsertProdInfo =  ( {assignData,dataList} ) => {
                 
                 value={dataList.stock}
               />
-
+ */}
               <label className={css.tags} htmlFor="discount">
                 Discount
               </label>

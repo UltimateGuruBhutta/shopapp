@@ -13,7 +13,7 @@ const AddProduct = () => {
     color: [],
     size: [],
     price: 0,
-    stock: 0,
+    // stock: 0,
     discount: 0,
     images: [],
   };

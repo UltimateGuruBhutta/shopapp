@@ -9,6 +9,7 @@ const bufferArrayToBase64 = (bufferArray) => {
   return `data:image/jpeg;base64,${base64String}`;
 };
 
+
 const ProductCards = ({ productList }) => {
   return (
     <>

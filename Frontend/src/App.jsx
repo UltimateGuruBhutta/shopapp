@@ -47,8 +47,8 @@ function App() {
       </BrowserRouter>
       {/* <Login/> */}
 
-      {/* <Register />
-      <AddProduct /> */}
+      {/* <Register /> */}
+      {/* <AddProduct /> */}
     </>
   );
 }

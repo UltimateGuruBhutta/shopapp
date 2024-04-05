@@ -1,17 +1,21 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/productDetail.module.css";
-  
+
 import { useContext } from "react";
 import { qtyContext } from "../../components/context";
 const ProductDetails = ({ props }) => {
+  const { qty, setSclr, setSz, sz, sclr, assignQty } = useContext(qtyContext);
 
+  // const assignToOrderList=()=>{
 
-  const {qty,setSclr,setSz,sz,sclr,assignQty}=useContext(qtyContext);
-  
-  
+  //   orderList= {
+  //     productID=,
+
+  //   }
+
+  // }
 
   return (
-    
     <div className={styles.center}>
       <div className={styles.container}>
         <div className={styles.productleftSideImg}>
@@ -34,7 +38,11 @@ const ProductDetails = ({ props }) => {
             <span className={styles.label}> Select Color:</span>
             {props.color &&
               props.color.map((curr) => (
-                <div className={styles.sizebtn} key={curr.id} onClick={()=>setSclr(curr)}>
+                <div
+                  className={styles.sizebtn}
+                  key={curr.id}
+                  onClick={() => setSclr(curr)}
+                >
                   {curr}
                   {console.log(sclr)}
                 </div>
@@ -48,7 +56,11 @@ const ProductDetails = ({ props }) => {
             </span>
             {props.size &&
               props.size.map((curr) => (
-                <div className={styles.sizebtn} key={curr.id} onClick={()=>setSz(curr)}>
+                <div
+                  className={styles.sizebtn}
+                  key={curr.id}
+                  onClick={() => setSz(curr)}
+                >
                   {curr}
                   {console.log(sz)}
                 </div>
@@ -59,14 +71,14 @@ const ProductDetails = ({ props }) => {
             <div className={styles.qtyBtn}>
               <button
                 className={styles.negBtn}
-                onClick={() =>assignQty('DECREMENT') }
+                onClick={() => assignQty("DECREMENT")}
               >
                 -
               </button>
               {qty}
               <button
                 className={styles.posBtn}
-                onClick={() =>assignQty('INCREMENT') }
+                onClick={() => assignQty("INCREMENT")}
               >
                 +
               </button>
@@ -78,7 +90,6 @@ const ProductDetails = ({ props }) => {
         </div>
       </div>
     </div>
-    
   );
 };
 
