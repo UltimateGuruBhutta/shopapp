@@ -5,13 +5,10 @@ const qtyContext = createContext();
 const QtyProvider = ({ children }) => {
 
   const [gdata,setGdata]=useState({
-    "qty":1,"size":"","color":"","price":0,"name":""
+    "id":0,"qty":1,"size":"","color":"","price":0,"name":"","image":``,
   })
-   const [cartlist,setCartlist]=useState([{
-    "id":0,"qty":1,"size":"","color":"","price":0,"name":""
-   }]
+   const [cartlist,setCartlist]=useState([])
 
-   )
   const assignQty = (fun) => {
     switch (fun) {
       case 'INCREMENT':
@@ -38,7 +35,7 @@ const QtyProvider = ({ children }) => {
   // }
 
   return (
-    <qtyContext.Provider value={{ gdata,setGdata, assignQty }}>
+    <qtyContext.Provider value={{ gdata,setGdata, assignQty,cartlist,setCartlist }}>
       {children}
     </qtyContext.Provider>
   );

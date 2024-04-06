@@ -6,7 +6,23 @@ Wtf:sending array of strings with new FormData() method to server but get array 
 ans:Based on the server-side code snippet you provided, it appears the issue isn't with how files (images) are handled, but rather with how arrays within the form data (such as color and size) are submitted and interpreted. When using FormData to append array elements and then sending this data over HTTP, the server might interpret these appended elements differently than expected, potentially combining them into a single string.
 
 d: no matter what file you r sending , it can only be sent using new FormData() instance, append your data in it send it to server,
-then use mutler to seprate strings and files and save in database.
+    then use mutler to seprate strings and files and save in database.
 
 
 wtf: cannot call function in jsx only varible or you stuck in loading
+
+
+
+
+wtf:{props.images && props.images.map(... 
+    works in code but {props.images.map(.... dont work even prop.images.length is not zero why
+
+
+oh: if there is problem in child component 
+    if child component is not rendering then whole parent will not excute 
+    ans:This is because React's default behavior upon encountering an error during rendering 
+    is to stop executing the component function and propagate the error up the component tree.
+    If the error is not caught and handled (for instance, with error boundaries),
+    it can result in parts of the UI not appearing as expected, or in the worst case, an entirely blank page.
+
+

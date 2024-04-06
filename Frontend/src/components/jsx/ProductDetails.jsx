@@ -1,44 +1,44 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/productDetail.module.css";
-
+import { bufferArrayToBase64 } from "../reuseableFunctions.js";
 import { useContext, useEffect } from "react";
 import { qtyContext } from "../../components/context";
 const ProductDetails = ({ props }) => {
-  const { gdata,setGdata, assignQty } = useContext(qtyContext);
+  const { gdata, setGdata, assignQty } = useContext(qtyContext);
 
   // that my boy my IIFE
-  useEffect(()=>{
+  useEffect(() => {
     (() => {
       setGdata((prev) => {
-        return {...prev, price: props.price, name: props.name};
+        return { ...prev, price: props.price, name: props.name };
       });
     })();
-
-  },[props])
-  
-const addToCart=()=>{
-
- let currentid=props._id;
-
-
-
-
-
-
-}
-
+  }, [props]);
 
   return (
     <div className={styles.center}>
       <div className={styles.container}>
         <div className={styles.productleftSideImg}>
-          <div className={styles.sideImg}>Image 1</div>
-          <div className={styles.sideImg}>Image 2</div>
-          <div className={styles.sideImg}>Image 3</div>
+           
+          {props.images &&
+            props.images.map((curr, index) => (
+              <img
+                src={bufferArrayToBase64(curr.data)}
+                alt={`${props.name} ${index}`}
+                key={index}
+                className={styles.sideImg}
+              />
+            ))}
         </div>
 
         <div className={styles.productMainImg}>
-          <div className={styles.mImg}>Main Image</div>
+          <img
+            src={bufferArrayToBase64(
+              props.images[props.images.length - 1].data
+            )}
+            alt={`props.name ${props.images.length - 1}`}
+            className={styles.mImg}
+          />
         </div>
 
         <div className={styles.productInfo}>
@@ -54,7 +54,11 @@ const addToCart=()=>{
                 <div
                   className={styles.sizebtn}
                   key={curr.id}
-                  onClick={() => setGdata((prev)=>{return {...prev,color:curr}})}
+                  onClick={() =>
+                    setGdata((prev) => {
+                      return { ...prev, color: curr };
+                    })
+                  }
                 >
                   {curr}
                   {console.log(gdata.color)}
@@ -72,7 +76,11 @@ const addToCart=()=>{
                 <div
                   className={styles.sizebtn}
                   key={curr.id}
-                  onClick={() => setGdata((prev)=>{return {...prev,size:curr}})}
+                  onClick={() =>
+                    setGdata((prev) => {
+                      return { ...prev, size: curr };
+                    })
+                  }
                 >
                   {curr}
                   {console.log(gdata.size)}
