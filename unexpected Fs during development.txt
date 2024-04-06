@@ -7,3 +7,6 @@ ans:Based on the server-side code snippet you provided, it appears the issue isn
 
 d: no matter what file you r sending , it can only be sent using new FormData() instance, append your data in it send it to server,
 then use mutler to seprate strings and files and save in database.
+
+
+wtf: cannot call function in jsx only varible or you stuck in loading

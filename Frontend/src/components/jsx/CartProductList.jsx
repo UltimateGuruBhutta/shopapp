@@ -17,7 +17,7 @@ const CartProductList = () => {
           />
           <div className={css.prdtNfo}>
             <div className={css.header}>
-              <span className={css.title}>Title</span>{" "}
+              <span className={css.title}>{gdata.name}</span>{" "}
               <div className={css.dltIcn}> del</div>
             </div>
             <span className={css.sz}>
@@ -28,7 +28,7 @@ const CartProductList = () => {
               Color: <span className={css.typ}> {gdata.color}</span>
             </span>
             <div className={css.qty}>
-              <span className={css.price}>$145</span>
+              <span className={css.price}>${gdata.price}</span>
               <div className={css.btnsDiv}>
                 <button
                   className={css.btn}

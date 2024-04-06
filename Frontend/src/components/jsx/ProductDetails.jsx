@@ -1,12 +1,32 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/productDetail.module.css";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { qtyContext } from "../../components/context";
 const ProductDetails = ({ props }) => {
   const { gdata,setGdata, assignQty } = useContext(qtyContext);
 
+  // that my boy my IIFE
+  useEffect(()=>{
+    (() => {
+      setGdata((prev) => {
+        return {...prev, price: props.price, name: props.name};
+      });
+    })();
+
+  },[props])
   
+const addToCart=()=>{
+
+ let currentid=props._id;
+
+
+
+
+
+
+}
+
 
   return (
     <div className={styles.center}>
@@ -77,7 +97,7 @@ const ProductDetails = ({ props }) => {
               </button>
             </div>
             <Link to={`/CartPage`}>
-              <button className={styles.addToCartBtn}>Add to Cart</button>
+              {/* <button className={styles.addToCartBtn} onClick={}>Add to Cart</button>{} */}
             </Link>
           </div>
         </div>

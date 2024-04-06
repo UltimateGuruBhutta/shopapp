@@ -1,13 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/productRow.module.css"; // Import the CSS Module
-
+import {bufferArrayToBase64} from "../reuseableFunctions.js"
 // Function to convert buffer array to base64 string
-const bufferArrayToBase64 = (bufferArray) => {
-  const base64String = btoa(
-    String.fromCharCode(...new Uint8Array(bufferArray))
-  );
-  return `data:image/jpeg;base64,${base64String}`;
-};
+ 
 
 
 const ProductCards = ({ productList }) => {
