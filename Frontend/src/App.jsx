@@ -25,6 +25,7 @@ import AddProduct from "./Pages/jsx/AddProduct";
 import { QtyProvider } from "../src/components/context";
 import Login from "./components/jsx/Login";
 import Register from "./components/jsx/Register";
+import Cart from "./components/jsx/Cart";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -49,6 +50,7 @@ function App() {
 
       {/* <Register /> */}
       {/* <AddProduct /> */}
+      {/* <Cart/> */}
     </>
   );
 }

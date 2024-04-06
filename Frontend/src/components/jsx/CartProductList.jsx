@@ -3,7 +3,7 @@ import { qtyContext } from "../../components/context";
 import css from "../styles/CartProductList.module.css";
 
 const CartProductList = () => {
-  const { qty, assignQty, sz, sclr } = useContext(qtyContext);
+  const { gdata,setGdata, assignQty } = useContext(qtyContext);
 
   return (
     <>
@@ -22,10 +22,10 @@ const CartProductList = () => {
             </div>
             <span className={css.sz}>
               {" "}
-              Size:<span className={css.typ}> {sz}</span>
+              Size:<span className={css.typ}> {gdata.size}</span>
             </span>
             <span className={css.clr}>
-              Color: <span className={css.typ}> {sclr}</span>
+              Color: <span className={css.typ}> {gdata.color}</span>
             </span>
             <div className={css.qty}>
               <span className={css.price}>$145</span>
@@ -36,14 +36,14 @@ const CartProductList = () => {
                 >
                   -
                 </button>
-                {qty}{" "}
+                {gdata.qty}{" "}
                 <button
                   className={css.btn}
                   onClick={() => assignQty("INCREMENT")}
                 >
                   +
                 </button>
-                {console.log("In Cart page ",qty,sclr,sz)}
+                {console.log("In Cart page ",gdata.qty,gdata.color,gdata.size)}
 
               </div>
             </div>

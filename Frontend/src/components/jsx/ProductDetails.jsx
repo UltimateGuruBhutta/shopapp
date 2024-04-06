@@ -4,16 +4,9 @@ import styles from "../styles/productDetail.module.css";
 import { useContext } from "react";
 import { qtyContext } from "../../components/context";
 const ProductDetails = ({ props }) => {
-  const { qty, setSclr, setSz, sz, sclr, assignQty } = useContext(qtyContext);
+  const { gdata,setGdata, assignQty } = useContext(qtyContext);
 
-  // const assignToOrderList=()=>{
-
-  //   orderList= {
-  //     productID=,
-
-  //   }
-
-  // }
+  
 
   return (
     <div className={styles.center}>
@@ -41,10 +34,10 @@ const ProductDetails = ({ props }) => {
                 <div
                   className={styles.sizebtn}
                   key={curr.id}
-                  onClick={() => setSclr(curr)}
+                  onClick={() => setGdata((prev)=>{return {...prev,color:curr}})}
                 >
                   {curr}
-                  {console.log(sclr)}
+                  {console.log(gdata.color)}
                 </div>
               ))}
           </div>
@@ -59,10 +52,10 @@ const ProductDetails = ({ props }) => {
                 <div
                   className={styles.sizebtn}
                   key={curr.id}
-                  onClick={() => setSz(curr)}
+                  onClick={() => setGdata((prev)=>{return {...prev,size:curr}})}
                 >
                   {curr}
-                  {console.log(sz)}
+                  {console.log(gdata.size)}
                 </div>
               ))}
           </div>
@@ -75,7 +68,7 @@ const ProductDetails = ({ props }) => {
               >
                 -
               </button>
-              {qty}
+              {gdata.qty}
               <button
                 className={styles.posBtn}
                 onClick={() => assignQty("INCREMENT")}

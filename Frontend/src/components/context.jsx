@@ -3,25 +3,38 @@ import   { createContext, useState } from "react";
 const qtyContext = createContext();
 
 const QtyProvider = ({ children }) => {
-  const [qty, setQty] = useState(1);
-  const [sz, setSz] = useState('');
-  const [sclr, setSclr] = useState('');
 
+  const [gdata,setGdata]=useState({
+    "qty":1,"size":"","color":"","price":0,"title":""
+  })
+   
   const assignQty = (fun) => {
     switch (fun) {
       case 'INCREMENT':
-        setQty((prev) => prev + 1);
+        setGdata((prev)=>{
+          return {...prev,qty:prev.qty+1};
+        })
         break;
       case 'DECREMENT':
-        setQty((prev) => (prev > 1 ? prev - 1 : 1));
+        setGdata((prev)=>{
+          return {...prev,qty:prev.qty>1?prev.qty-1:1}
+        })
         break;
-      default:
-        break;
+      
     }
   };
 
+  // const assignToOrderList=()=>{
+
+  //   orderList= {
+  //     productID=,
+
+  //   }
+
+  // }
+
   return (
-    <qtyContext.Provider value={{ qty, assignQty, sz, setSz, sclr, setSclr }}>
+    <qtyContext.Provider value={{ gdata,setGdata, assignQty }}>
       {children}
     </qtyContext.Provider>
   );
