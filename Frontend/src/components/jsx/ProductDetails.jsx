@@ -19,7 +19,6 @@ const ProductDetails = ({ props }) => {
     <div className={styles.center}>
       <div className={styles.container}>
         <div className={styles.productleftSideImg}>
-           
           {props.images &&
             props.images.map((curr, index) => (
               <img
@@ -32,13 +31,15 @@ const ProductDetails = ({ props }) => {
         </div>
 
         <div className={styles.productMainImg}>
-          <img
-            src={bufferArrayToBase64(
-              props.images[props.images.length - 1].data
-            )}
-            alt={`props.name ${props.images.length - 1}`}
-            className={styles.mImg}
-          />
+          {props.images && props.images.length > 0 && (
+            <img
+              src={bufferArrayToBase64(
+                props.images[props.images.length - 1].data
+              )}
+              alt={`${props.name} ${props.images.length - 1}`}
+              className={styles.mImg}
+            />
+          )}
         </div>
 
         <div className={styles.productInfo}>
