@@ -1,19 +1,25 @@
 /* Base styles for the navbar to ensure background and text colors are aligned with a light theme */
 .navbar {
-  background-color: #f9f9f9; /* Light background */
+  background-image:url('../../assets/whitemarble.svg'); /* Light background */
+  background-size: cover;   /* Cover ensures the background size covers the entire container */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-position: center; 
+ 
+
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   display: flex;
   justify-content: space-between; /* Space between logo and nav items */
   padding: 0.5rem 1rem; /* Padding around the navbar */
   align-items: center; /* Align items vertically */
   z-index: 100;
+  height: 10vh;
 }
 
 /* Logo styles to make it stand out */
 .navbar .logo h1 {
-  margin: 0;
-  color: #333; /* Darker text for contrast */
-  font-size: 1.5rem; /* Larger font size */
+   
+  
+  font-size: 2rem; /* Larger font size */
 }
 
 /* Styling for the navigation items */
