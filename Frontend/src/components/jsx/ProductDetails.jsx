@@ -3,6 +3,7 @@ import styles from "../styles/productDetail.module.css";
 import { bufferArrayToBase64 } from "../reuseableFunctions.js";
 import { useContext, useEffect, useState } from "react";
 import { qtyContext } from "../../components/context";
+import { ToastContainer, toast } from "react-toastify";
  
 
 const ProductDetails = ({ props }) => {
@@ -13,15 +14,18 @@ const ProductDetails = ({ props }) => {
    
   // Hook to update data based on props changes
 useEffect(() => {
+  if(pics){//it will run when pics are set after props
   setData({
     id: props._id,
-    qty: props.qty,
-    size: props.size,
-    color: props.color,
+    qty: 1,
+    size: null,
+    color: null,
     price: props.price,
     name: props.name,
-    image: pics,   
+    image: pics[pics.length-1],   
   });
+}
+
 }, [props,pics]);  
  
 useEffect(() => {
@@ -41,11 +45,11 @@ useEffect(() => {
   const addToCart = () => {
     
     console.log("data in productDetail", data);
-    if (data.color == "") {
-      alert("Select color first");
+    if (data.color == null) {
+      toast.error("Select color first");
     }
-    if (data.size == "") {
-      alert("Select size first");
+    if (data.size == null) {
+      toast.error("Select size first");
     } else {
        
        
@@ -115,12 +119,12 @@ useEffect(() => {
 
           <div className={styles.selectColor}>
             <span className={styles.label}> Select Color:</span>
-            {data.color &&
-              data.color.map((curr, index) => (
+            {props.color &&
+              props.color.map((curr, index) => (
                 <div
                   className={styles.sizebtn}
                   key={index}
-                  
+                  onClick={()=>setData((prev)=>{return {...prev,color:curr}})}
                 >
                   {curr}
                    
@@ -133,11 +137,12 @@ useEffect(() => {
               {" "}
               Choose Size:
             </span>
-            {data.size &&
-              data.size.map((curr, index) => (
+            {props.size &&
+              props.size.map((curr, index) => (
                 <div
                   className={styles.sizebtn}
                   key={index}
+                  onClick={()=>setData((prev)=>{return {...prev,size:curr}})}
                    
                 >
                   {curr}
@@ -150,14 +155,16 @@ useEffect(() => {
             <div className={styles.qtyBtn}>
               <button
                 className={styles.negBtn}
-                onClick={() => assignQty("DECREMENT")}
+                onClick={()=>setData((prev)=>{return {...prev,qty:prev.qty-1==0?1:prev.qty-1}})}
+
               >
                 -
               </button>
               {data.qty}
               <button
                 className={styles.posBtn}
-                onClick={() => assignQty("INCREMENT")}
+                onClick={()=>setData((prev)=>{return {...prev,qty:prev.qty+1}})}
+
               >
                 +
               </button>
@@ -171,6 +178,7 @@ useEffect(() => {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 };
