@@ -2,8 +2,9 @@ import { useContext } from "react";
 import { qtyContext } from "../../components/context";
 import css from "../styles/CartProductList.module.css";
 
-const CartProductList = () => {
+const CartProductList = (cartlist) => {
   const { gdata,setGdata, assignQty } = useContext(qtyContext);
+   
 
   return (
     <>
@@ -17,18 +18,18 @@ const CartProductList = () => {
           />
           <div className={css.prdtNfo}>
             <div className={css.header}>
-              <span className={css.title}>{gdata.name}</span>{" "}
-              <div className={css.dltIcn}> del</div>
+              <span className={css.title}>{cartlist.name}</span>{" "}
+              <div className={css.dltIcn}> del </div>
             </div>
             <span className={css.sz}>
               {" "}
-              Size:<span className={css.typ}> {gdata.size}</span>
+              Size:<span className={css.typ}> {cartlist.size}</span>
             </span>
             <span className={css.clr}>
-              Color: <span className={css.typ}> {gdata.color}</span>
+              Color: <span className={css.typ}> {cartlist.color}</span>
             </span>
             <div className={css.qty}>
-              <span className={css.price}>${gdata.price}</span>
+              <span className={css.price}>${cartlist.price}</span>
               <div className={css.btnsDiv}>
                 <button
                   className={css.btn}

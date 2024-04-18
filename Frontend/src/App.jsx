@@ -1,4 +1,4 @@
-import "./App.css";
+import css from "./App.module.css";
 import CategoryPage from "./components/jsx/CategoryPage";
 import FilterProduct from "./components/jsx/FilterProduct";
 import Footer from "./components/jsx/Footer";
@@ -25,16 +25,19 @@ import AddProduct from "./Pages/jsx/AddProduct";
 import { QtyProvider } from "../src/components/context";
 import Login from "./components/jsx/Login";
 import Register from "./components/jsx/Register";
-import Cart from "./components/jsx/Cart";
-
+import { useState } from "react";
+ 
 function App() {
-  // const [count, setCount] = useState(0)
+  
+   
 
   return (
-    <>
+
+    <><div className={css.container}>
       <BrowserRouter>
         <QtyProvider>
-          <Navbar />
+          <Navbar  />
+           
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -51,6 +54,7 @@ function App() {
       {/* <Register /> */}
       {/* <AddProduct /> */}
       {/* <Cart/> */}
+      </div>
     </>
   );
 }

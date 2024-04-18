@@ -9,32 +9,43 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const ProductDetailsPage = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
 
   const param = useParams();
   const getData = async () => {
     try {
       const res = await axios.get(`http://localhost:3000/product/${param.id}`);
-      setData(res.data[0]);
+      setData(...res.data);
+    console.log("RESData in ProductDetailsPage:", res.data);
        
-      // console.log("in Product Detail Page response data", res.data);
+      
+
     } catch (error) {
       console.log("Error we recieved ", error);
     }
   };
-
   useEffect(() => {
     getData();
-    console.log("in Product Detail Page response data yoyoy", data);
-  }, []);
+}, []);
+
+useEffect(() => {
+    if (data) {
+        console.log("Data in ProductDetailsPage:", data);
+    }
+}, [data]);  // Log data when it changes and is set
+
 
   return (
     <>
-      <ProductDetails props={data} />
-
-      <ProductInfoSection />
-      <RatingSection />
-      <Footer />
+    {data ?
+     (
+      <>
+        <ProductDetails props={data} />
+        <ProductInfoSection />
+        <RatingSection />
+        <Footer />
+      </>
+    ): <div> Loading....</div>}
     </>
   );
 };

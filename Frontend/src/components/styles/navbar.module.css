@@ -6,6 +6,7 @@
   justify-content: space-between; /* Space between logo and nav items */
   padding: 0.5rem 1rem; /* Padding around the navbar */
   align-items: center; /* Align items vertically */
+  z-index: 100;
 }
 
 /* Logo styles to make it stand out */
@@ -36,4 +37,13 @@
 
 .navbar ul li a:hover {
   color: #007bff; /* Highlight color on hover */
+}
+
+.cartPosition{
+  position: fixed;
+  top: 11%;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
+
 }

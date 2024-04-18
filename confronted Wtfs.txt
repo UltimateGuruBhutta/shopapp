@@ -1,0 +1,7 @@
+wtf:to send images or file need send it with new FormData() function way if not submiting form and using only input fields, or else use forms
+
+
+Wtf:sending array of strings with new FormData() method to server but get array with single value from server . wtf.
+
+ans:Based on the server-side code snippet you provided, it appears the issue isn't with how files (images) are handled, but rather with how arrays within the form data (such as color and size) are submitted and interpreted. When using FormData to append array elements and then sending this data over HTTP, the server might interpret these appended elements differently than expected, potentially combining them into a single string.
+

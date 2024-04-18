@@ -23,7 +23,7 @@ const HomePage = () => {
       <Hero />
       <div>Product listing</div>
       <ProductRow productList={dat} />
-      {console.log("home page : ", dat)}
+       
     </>
   );
 };

@@ -9,7 +9,7 @@ const ProductCards = ({ productList }) => {
   return (
     <>
       <div className={styles.productCards}>
-        {productList.map((product) => (
+        {productList?productList.map((product) => (
           <Link to={`/ProductDetails/${product._id}`} key={product._id}>
             <div className={styles.card}>
               <img
@@ -23,7 +23,7 @@ const ProductCards = ({ productList }) => {
               </div>
             </div>
           </Link>
-        ))}
+        )):<p>No product is added</p>}
       </div>
     </>
   );
