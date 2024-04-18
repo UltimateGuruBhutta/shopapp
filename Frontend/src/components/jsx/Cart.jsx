@@ -2,26 +2,13 @@ import React, { useContext } from "react";
 import css from "../styles/Cart.module.css";
 import { qtyContext } from "../context";
 import CartProductList from "./CartProductList";
+import { useNavigate } from "react-router-dom";
 
 
 const Cart = ({ handleClose }) => {
-
-  const {cartlist,setCartlist}=useContext(qtyContext);
-  const removeOrder=(index)=>{
-    if(cartlist.length>0)
-    {
-      setCartlist(((prev)=>{
-        let arr=prev;
-        arr=arr.splice(index,1);
-        return arr;
-      }))
-      console.log("Cart check",cartlist)
-    }
-  }
-
-
-
-
+const navigate=useNavigate();
+  const {cartlist,handleChange,handleDelete}=useContext(qtyContext);
+  
 
   return (
     <div className={css.container}>
@@ -29,8 +16,8 @@ const Cart = ({ handleClose }) => {
         <h3 className={css.title}>Cart</h3>
         <div className={css.cartBtns}>
           <button onClick={() => handleClose()}> close</button>
-          {cartlist.length>0 ? <button>Finish Buying </button> : null}
-      {console.log("inCart",cartlist)}
+          {cartlist.length>0 ? <button onClick={()=>navigate(`/CartPage`)}>Finish Buying </button> : null}
+     
         </div>
       </div>
 
@@ -63,8 +50,7 @@ const Cart = ({ handleClose }) => {
 {
   cartlist.length>0 ? cartlist.map((obj,index)=>{
    
-    return <CartProductList cartlist={cartlist} key={index} />
-
+    return <CartProductList props={obj} handleChange={handleChange} handleDelete={handleDelete} index={index} key={index} />
 
 
 

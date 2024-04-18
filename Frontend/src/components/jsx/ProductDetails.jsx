@@ -77,7 +77,7 @@ useEffect(() => {
           return [...prev, data];
         }
       });
-      //navigate(`/CartPage`);
+      
     }
   };
 

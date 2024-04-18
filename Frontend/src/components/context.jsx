@@ -7,25 +7,21 @@ const QtyProvider = ({ children }) => {
    
    const [cartlist,setCartlist]=useState([ ])
 
-  const assignQty = (fun,index) => {
-    switch (fun) {
-      case 'INCREMENT':
-        setCartlist((prev)=>{
-          return [...prev,{...prev[index],qty:prev.qty+1}];
-        })
-        break;
-      case 'DECREMENT':
-        setCartlist((prev)=>{
-          return [...prev,{...prev[index],qty:prev.qty>1?prev.qty-1:1}]
-        })
-        break;
-      
-    }
-  };
- 
+   const handleChange = (name, newValue, index) => {
+    setCartlist(prev => {
+        const updatedList = [...prev];
+        updatedList[index] = {...updatedList[index], [name]: newValue};
+        return updatedList;
+    });
+};
+
+const handleDelete = (index) => {
+  setCartlist((prev) => prev.filter((item, idx) => idx !== index));
+};
+
 
   return (
-    <qtyContext.Provider value={{ assignQty,cartlist,setCartlist }}>
+    <qtyContext.Provider value={{ handleChange,handleDelete,cartlist,setCartlist }}>
       {children}
     </qtyContext.Provider>
   );

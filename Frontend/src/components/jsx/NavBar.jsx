@@ -33,13 +33,13 @@ const Navbar = () => {
           <a>Contact</a>
         </li>
         <li onClick={() => setCartOn((prev) => (prev ? false : true))}>
-          {" "}
-          Cart{" "}
+          
+          Cart 
         </li>
         {cartOn && (
           <div className={styles.cartPosition}>
-            {" "}
-            <Cart handleClose={handleClose} />{" "}
+           
+            <Cart handleClose={handleClose} /> 
           </div>
         )}
       </ul>
