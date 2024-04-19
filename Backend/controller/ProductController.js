@@ -4,7 +4,7 @@ export const createProduct = async (req, res) => {
   try {
     let imgPromises = req.files.map(file =>
       sharp(file.buffer)
-        .resize(320, 370, {
+        .resize(600, 300, {
           fit: 'fill'
         })
         .toBuffer()
