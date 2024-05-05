@@ -26,3 +26,7 @@ oh: if there is problem in child component
     it can result in parts of the UI not appearing as expected, or in the worst case, an entirely blank page.
 
 
+big f: there was time when we use to acess element css using ref.current.style.css  and css was written with classes in seprate file , 
+now when we want to modify css with state , it say you can only acess inline style of css with ref.current.style.elementcss to acess css of file or get css any way in the end use getcomputedcss 
+
+now it feels like react and javascript is big mind f, more than c++ atleast  we know what we were doing in c++

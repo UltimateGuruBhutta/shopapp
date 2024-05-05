@@ -15,7 +15,7 @@
   position: relative;
   aspect-ratio: 1/2;
   max-height: 88vh;
-  margin-block: 2rem;
+  margin-block: 1rem;
   /* Removed overflow: hidden; to allow elements to extend outside */
 }
  
@@ -54,10 +54,48 @@
   background-color: #355694;
   padding: 0.5rem;
   color: #f9fafb;
-  cursor: pointer;
+   
 
 }
- 
+.cartDiv{
+  display: flex;
+  margin-block:2.5rem;
+}
+.qtyBtn{
+  font-size: 1.3rem; /* This sets the baseline font size for text, not the icon */
+  font-weight: bolder;
+  display: flex; /* Ensures contents are centered */
+  justify-content: start; /* Center horizontally */
+  align-items: center; 
 
+}
+.crtBtn {
+  padding:0.4rem 0.5rem; /* Increased padding */
+  
+  background-color: #355694;
+  color: #f9fafb;
+  font-size: 1rem; /* This sets the baseline font size for text, not the icon */
+  font-weight: bolder;
+  display: flex; /* Ensures contents are centered */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  border: none; /* Assuming you don't want any border */
+  cursor: pointer;
+}
+
+.addToCartBtn{
+  padding:0.4rem 3rem; /* Increased padding */
+  
+  background-color: #ec516a;
+  color: #f9fafb;
+  /* font-size: 1rem; This sets the baseline font size for text, not the icon */
+  font-weight: bolder;
+  display: flex; /* Ensures contents are centered */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  border: none; /* Assuming you don't want any border */
+  cursor: pointer;
+  margin-left: 2rem;
+}
 
  

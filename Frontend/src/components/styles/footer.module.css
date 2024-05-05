@@ -1,5 +1,5 @@
 .footer {
-    background-color: #f8f9fa;
+    background-color: #D3D3D3;
     padding: 20px;
     text-align: center;
   }
@@ -21,7 +21,7 @@
   
   .slogan {
     font-style: italic;
-    color: #666;
+    color: black;
   }
   
 
@@ -38,7 +38,7 @@
   }
   
   .linksSection a, .socialMediaSection a, .contactSection p {
-    color: #007bff;
+    color:#16197d;
     text-decoration: none;
   }
   

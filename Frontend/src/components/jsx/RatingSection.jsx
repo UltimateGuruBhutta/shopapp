@@ -70,7 +70,7 @@ const RatingSection = () => {
                 <div className={css.rating}> {item.rating} </div>{" "}
                 <div className={css.user}>{item.username}</div>
                 <div className={css.revText}>{item.review}</div>
-                <div className={css.revDate}>Posted on {item.date}</div>
+                <div className={css.revDate}><i>Posted on {item.date}</i></div>
               </div>
             );
           })}

@@ -3,13 +3,42 @@ import { bufferArrayToBase64 } from "../reuseableFunctions.js";
 import { useContext, useEffect, useRef, useState } from "react";
 import { qtyContext } from "../../components/context";
 import { ToastContainer, toast } from "react-toastify";
-
+import { LuMinus ,LuPlus} from "react-icons/lu";
 const ProductDetails = ({ props }) => {
   const { cartlist, setCartlist } = useContext(qtyContext);
   const [pics, setPics] = useState(null);
   const [data, setData] = useState(null);
-   
-   
+
+  const colorRefs = useRef([]);
+  const sizeRefs = useRef([]);
+ 
+  const selectEffect = (index,elementRef) => {
+    const list=elementRef.current;
+    const element = elementRef.current[index];
+    console.log("jumbo index ", index, element);
+    
+    const style = window.getComputedStyle(element);
+     
+    if (style.backgroundColor === 'rgb(53, 86, 148)') {
+      
+      element.style.backgroundColor = 'rgb(0,45,203)';    }
+     
+      for(let i=0;i<list.length;i++)
+      {
+        if(i==index)
+        continue;
+      else
+      {
+         
+        list[i].style.backgroundColor='rgb(53, 86, 148)';
+
+      }
+      }
+
+
+  };
+  
+  
 
   useEffect(() => {
     if (pics) {
@@ -73,10 +102,6 @@ const ProductDetails = ({ props }) => {
     }
   };
 
-  
-
-
-
   if (!data) {
     return <div>loading....</div>;
   }
@@ -117,19 +142,25 @@ const ProductDetails = ({ props }) => {
               props.color.map((curr, index) => (
                 <div
                   className={styles.color}
-                  key={index}
-                  
-            onClick={() => {
-              setData(prev => ({ ...prev, color: curr }));
-               
-               
-            }}
-          >
+                  key={index} 
+                  ref={(el) => (colorRefs.current[index] = el)}
+                  onClick={() => {
+                    setData((prev) => ({ ...prev, color: curr }));
+                    selectEffect(index,colorRefs);
+                  }}
+                >
                   {curr}
                 </div>
               ))}
           </div>
 
+{/* 
+///
+///
+/size maping 
+///
+//
+// */}
           <h4 className={styles.head}>Select Size:</h4>
           <div className={styles.selectSize}>
             {props.size &&
@@ -137,23 +168,22 @@ const ProductDetails = ({ props }) => {
                 <div
                   className={styles.sizebtn}
                   key={index}
-                   
+                  ref={(el=>sizeRefs.current[index]=el)}
                   onClick={() => {
-                    setData(prev => ({ ...prev, size: curr }));
-                     
-                     
+                    setData((prev) => ({ ...prev, size: curr }));
+                    selectEffect(index,sizeRefs);
+                    
                   }}
-                   
                 >
                   {curr}
                 </div>
               ))}
           </div>
-
+          
           <div className={styles.cartDiv}>
             <div className={styles.qtyBtn}>
-              <button
-                className={styles.negBtn}
+            <button
+                className={styles.crtBtn}
                 onClick={() =>
                   setData((prev) => {
                     return {
@@ -163,22 +193,22 @@ const ProductDetails = ({ props }) => {
                   })
                 }
               >
-                -
+                <LuMinus />
               </button>
-              {data.qty}
+              <span style={{marginInline:'1rem'}}>{data.qty}</span>
               <button
-                className={styles.posBtn}
+                className={styles.crtBtn}
                 onClick={() =>
                   setData((prev) => {
                     return { ...prev, qty: prev.qty + 1 };
                   })
                 }
               >
-                +
+             <LuPlus />
               </button>
             </div>
 
-            <button className={styles.addToCartBtn} onClick={addToCart}>
+            <button className={styles.addToCartBtn} onClick={addToCart}  >
               Add to Cart
             </button>
           </div>
