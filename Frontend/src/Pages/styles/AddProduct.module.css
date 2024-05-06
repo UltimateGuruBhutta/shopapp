@@ -5,22 +5,42 @@
   margin-block:2rem;
   background-color: #D3D3D3;
   padding: 1rem;
+
 }
 
 .btn{
   margin-right:3rem;
 padding: 0.5rem 1rem;
-
+ 
 background-color: #ec516a;
 color: #f9fafb;
 border: none;
+box-shadow: 5px 5px 20px 0px #ec516a;;
 
 }
 
 .wrapper{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-   
+  padding:2rem 2rem 2rem 4rem;
+box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.5);
+  width:80%;
+  margin-inline: auto;
+  margin-block: 0.5rem 2rem;
+}
+
+.btn:hover{
+  animation:bumber 1s infinite;
+  cursor: pointer;
+}
+
+@keyframes bumber {
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

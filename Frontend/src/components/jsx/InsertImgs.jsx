@@ -68,11 +68,11 @@ const InsertImgs = ({ assignData, dataList }) => {
           {console.log("preview:", preview)}
         </>
       ) : (
-        <CiImageOn style={{ width: "420px", height: "100%" }} />
+        <CiImageOn style={{ width: "420px", height: "100%" , color:"white"}} />
       )}
 
       <div className={css.insHold}>
-        <div className={css.addImg}>
+        
           <input
             onChange={getImgs}
             ref={inputRef}
@@ -83,7 +83,7 @@ const InsertImgs = ({ assignData, dataList }) => {
           />
 
           <div className={css.uploader} onClick={giveClick}>
-            <GoUpload />
+            <GoUpload  />
             <CiImageOn />
             <IoIosAddCircleOutline />
           </div>
@@ -102,7 +102,7 @@ const InsertImgs = ({ assignData, dataList }) => {
           ) : (
             <div style={{ display: "none" }}> </div>
           )}
-        </div>
+         
       </div>
     </div>
   );

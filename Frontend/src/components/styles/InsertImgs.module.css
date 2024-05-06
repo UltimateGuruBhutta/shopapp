@@ -1,9 +1,8 @@
 .abc {
-  padding: 6px;
-  background-color: aqua;
-  width: 440px;
-  height: auto;
-  border-radius: 5px;
+  padding: 2rem;
+  background-color: rgba(39, 143, 185, 0.5);
+  max-width: 40%;
+
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -12,42 +11,18 @@
 
 .mImg {
   width: 420px;
-  height: auto;
-  object-fit: fill;
+  
+  object-fit: contain;
   aspect-ratio: 1/1;
 }
 
 .insHold {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  width: 100%;
-  height: auto;
-  background-color: aquamarine;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+gap: 0.5rem;
   padding: 6px;
 }
-
-.addImg {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: start;
-  flex-wrap: wrap;
-  padding: 6px;
-  background-color: blueviolet;
-  width: 100%;
-}
-
-.uploader {
-  display: flex;
-  background-color: aliceblue;
-  padding: 20px;
-  border-radius: 6px;
-  border: 2px solid black;
-  cursor: pointer;
-  margin: 3px;
-}
+ 
 
 .subImg {
   margin: 3px;
@@ -55,5 +30,33 @@
   height: 60px;
   border: 2px solid black;
   aspect-ratio: 1/1;
-  object-fit: fill;
+  object-fit: contain;
+}
+
+.uploader {
+  display: flex;
+  background-color: #16197d;
+  color:white;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  transition: transform 1s ease-in;
+  
+  cursor: pointer;
+  
+}
+
+.uploader:hover{
+  animation:bumber 1s infinite;
+}
+
+
+
+@keyframes bumber {
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

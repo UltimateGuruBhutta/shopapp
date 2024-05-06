@@ -96,6 +96,21 @@
   border: none; /* Assuming you don't want any border */
   cursor: pointer;
   margin-left: 2rem;
+  box-shadow: 5px 5px 20px 0px #ec516a;;
 }
 
  
+
+.addToCartBtn:hover{
+  animation:bumber 1s infinite;
+  cursor: pointer;
+}
+
+@keyframes bumber {
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

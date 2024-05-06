@@ -92,7 +92,7 @@ const InsertProdInfo =  ( {assignData,dataList} ) => {
                   })}
 
                 {colorF ? (
-                  <button onClick={() => setColorF(false)}>Add Color </button>
+                  <button onClick={() => setColorF(false) } className={css.addBtn}>Add Color </button>
                 ) : (
                   <>
                     <input
@@ -121,7 +121,7 @@ const InsertProdInfo =  ( {assignData,dataList} ) => {
                   })}
 
                 {sizeF ? (
-                  <button onClick={() => setSizeF(false)}>Add Size </button>
+                  <button onClick={() => setSizeF(false)}  className={css.addBtn}>Add Size </button>
                 ) : (
                   <>
                     <input

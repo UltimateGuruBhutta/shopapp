@@ -22,6 +22,7 @@
   display:flex;
   flex-direction: column;
   justify-content: space-around;
+  transition: transform 0.3s ease-in-out;
 }
 
 .rating{
@@ -42,5 +43,21 @@
 
 }
 
- 
+.reviewCard:hover{
+  transform: translateY(-5px);
+  box-shadow: 3px 3px 4px  #16197d;
 
+}
+
+.container::-webkit-scrollbar {
+  width:3px;
+}
+
+
+.container::-webkit-scrollbar-thumb {
+ width: 5px;
+}
+
+.container::-webkit-scrollbar-track {
+ opacity: 0.5;
+}
