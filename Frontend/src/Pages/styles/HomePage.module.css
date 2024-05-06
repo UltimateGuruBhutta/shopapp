@@ -1,0 +1,12 @@
+.header{
+    font-size: 3em;
+    font-weight: 800;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.productWrapper{
+    margin-inline: auto;
+    width: 80%;
+   
+}

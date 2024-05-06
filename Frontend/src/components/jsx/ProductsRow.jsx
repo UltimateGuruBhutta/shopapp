@@ -7,7 +7,7 @@ import {bufferArrayToBase64} from "../reuseableFunctions.js"
 
 const ProductCards = ({ productList }) => {
   return (
-    <>
+    <> 
       <div className={styles.productCards}>
         {productList?productList.map((product) => (
           <Link to={`/ProductDetails/${product._id}`} key={product._id}>

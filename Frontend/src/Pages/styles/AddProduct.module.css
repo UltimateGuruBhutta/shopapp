@@ -1,6 +1,26 @@
-.container {
+.sendBtn{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-block:2rem;
+  background-color: #D3D3D3;
+  padding: 1rem;
+}
+
+.btn{
+  margin-right:3rem;
+padding: 0.5rem 1rem;
+
+background-color: #ec516a;
+color: #f9fafb;
+border: none;
+
+}
+
+.wrapper{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+   
 }

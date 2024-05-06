@@ -42,21 +42,5 @@
 
 }
 
-.reviewCard:hover{
-  box-shadow: 4px 4px 8px  #278fb9;
  
-  animation: grow 100ms linear both;
-}
-
-
-@keyframes grow {
-  100%{
- 
-  transform:translate(-15px,-15px);
-  }
-
-
-}
-
-
 

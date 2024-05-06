@@ -47,6 +47,7 @@ function App() {
             <Route path="/CartPage" element={<CartPage />} />
             <Route path="/AddProduct" element={<AddProduct />} />
           </Routes>
+          <Footer/>
         </QtyProvider>
       </BrowserRouter>
       {/* <Login/> */}

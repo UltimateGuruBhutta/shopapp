@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import Footer from "../../components/jsx/Footer";
 import ProductDetails from "../../components/jsx/ProductDetails";
 import ProductInfoSection from "../../components/jsx/ProductInfoSection";
 import RatingSection from "../../components/jsx/RatingSection";
@@ -43,7 +42,7 @@ useEffect(() => {
         <ProductDetails props={data} />
         <ProductInfoSection />
         <RatingSection />
-        <Footer />
+     
       </>
     ): <div> Loading....</div>}
     </>

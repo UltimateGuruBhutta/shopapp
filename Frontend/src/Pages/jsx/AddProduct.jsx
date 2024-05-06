@@ -149,10 +149,14 @@ const AddProduct = () => {
 
   return (
     <div className={css.container}>
-      <button onClick={handleSend}>Send to Server</button>
+      <div className={css.sendBtn} >
+
+      <button onClick={handleSend}className={css.btn} >Let's add it!</button>
+      </div>
+      <div className={css.wrapper}>
       <InsertProdInfo assignData={handleFormData} dataList={formData} />
       <InsertImgs assignData={handleFormData} dataList={formData} />
-      <ToastContainer />
+      <ToastContainer /></div>
     </div>
   );
 };

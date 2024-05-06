@@ -3,6 +3,8 @@ import Hero from "../../components/jsx/Hero";
 import ProductRow from "../../components/jsx/ProductsRow";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loader from "../../components/jsx/Loading";
+
 const HomePage = () => {
   const [dat, setDat] = useState([]);
   const getData = async () => {
@@ -21,8 +23,10 @@ const HomePage = () => {
   return (
     <>
       <Hero />
-      <div>Product listing</div>
-      <ProductRow productList={dat} />
+      <div className={css.header}>Most Bought</div>
+      <div className={css.productWrapper}>
+        {dat.length > 0 ? <ProductRow productList={dat} /> : <Loader />}
+      </div>
        
     </>
   );
